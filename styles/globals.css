@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #0c0c0f;
+  color: #f4f4f5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Availability status badges */
+.badge-available {
+  @apply bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-mono tracking-widest uppercase px-2 py-0.5;
+}
+
+.badge-partial {
+  @apply bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-mono tracking-widest uppercase px-2 py-0.5;
+}
+
+.badge-booked {
+  @apply bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-mono tracking-widest uppercase px-2 py-0.5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #18181d; }
+::-webkit-scrollbar-thumb { background: #3e3e4a; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #5c5c6b; }
+
+/* Subtle grain overlay on backgrounds */
+.grain {
+  position: relative;
+}
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hour grid for availability calendar */
+.hour-slot {
+  @apply h-8 border border-obsidian-700/50 flex items-center justify-center text-xs font-mono cursor-default transition-colors;
+}
+.hour-slot.available {
+  @apply bg-emerald-900/20 border-emerald-800/40 hover:bg-emerald-900/40;
+}
+.hour-slot.booked {
+  @apply bg-red-900/20 border-red-900/30 cursor-not-allowed opacity-50;
+}
+.hour-slot.selected {
+  @apply bg-sand-600/40 border-sand-500/60;
+}
+
+/* Input styles */
+.input-field {
+  @apply w-full bg-obsidian-800 border border-obsidian-600 text-sand-50 px-4 py-3 text-sm focus:outline-none focus:border-sand-400 transition-colors placeholder-obsidian-400;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-sand-500 hover:bg-sand-400 text-obsidian-950 font-medium px-6 py-3 transition-all duration-200 tracking-wide;
+}
+
+.btn-secondary {
+  @apply border border-obsidian-600 hover:border-sand-500 text-sand-100 px-6 py-3 transition-all duration-200 tracking-wide;
+}
+
+.btn-ghost {
+  @apply text-obsidian-400 hover:text-sand-300 transition-colors text-sm;
+}
+
+/* Card styles */
+.studio-card {
+  @apply bg-obsidian-900 border border-obsidian-700 hover:border-obsidian-500 transition-all duration-300 cursor-pointer group;
+}
+
+/* Section headers */
+.section-label {
+  @apply text-xs font-mono tracking-[4px] uppercase text-obsidian-400;
+}
+
+/* Display headings */
+.display-heading {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+/* Price display */
+.price-display {
+  @apply font-mono text-sand-300;
+}
+
+/* Dividers */
+.divider {
+  @apply border-t border-obsidian-700;
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
